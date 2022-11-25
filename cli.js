@@ -9,7 +9,7 @@ const yellow = chalk.yellow;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const CURR_DIR = process.cwd();
-const TEMPLATES = fs.readdirSync(`${__dirname}/templates`);
+const TEMPLATES = fs.readdirSync(`${__dirname}/project-templates`);
 
 export const QUESTIONS = [
 	{
