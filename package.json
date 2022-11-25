@@ -1,0 +1,25 @@
+{
+  "name": "@joshkaposh/templates",
+  "version": "1.0.0",
+  "description": "Template for quickly building websites",
+  "main": "index.js",
+  "type": "module",
+  "bin": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshkaposh/templates.git"
+  },
+  "author": "Josh Dulisse",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joshkaposh/templates/issues"
+  },
+  "homepage": "https://github.com/joshkaposh/templates#readme",
+  "dependencies": {
+    "chalk": "^5.1.2",
+    "inquirer": "^9.1.4"
+  }
+}
