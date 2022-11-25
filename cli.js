@@ -44,7 +44,7 @@ const printProjectCreated = (projectName) => {
 export const handleUserChoice = (answers) => {
 	const projectChoice = answers["project-choice"];
 	const projectName = answers["project-name"];
-	const templatePath = `${__dirname}/templates/${projectChoice}`;
+	const templatePath = `${__dirname}/project-templates/${projectChoice}`;
 	fs.mkdirSync(`${CURR_DIR}/${projectName}`);
 	createTemplate(templatePath, projectName);
 	printProjectCreated(projectName);
