@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "jsx": "react",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "types": ["react/next"],
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+  }
+}

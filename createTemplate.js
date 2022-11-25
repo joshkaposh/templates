@@ -1,7 +1,7 @@
 import * as fs from "fs";
 const CURR_DIR = process.cwd();
 
-const createDirectoryContents = (templatePath, newProjectPath) => {
+const createTemplate = (templatePath, newProjectPath) => {
 	const filesToCreate = fs.readdirSync(templatePath);
 
 	filesToCreate.forEach((file) => {
@@ -18,13 +18,13 @@ const createDirectoryContents = (templatePath, newProjectPath) => {
 
 			const writePath = `${CURR_DIR}/${newProjectPath}/${file}`;
 			fs.writeFileSync(writePath, contents, "utf8");
-		} else if (stats.isDirectory()) {
+		} else if (stats.isDirectory() && file !== "node_modules" && file !== ".git") {
 			fs.mkdirSync(`${CURR_DIR}/${newProjectPath}/${file}`);
 
 			// recursive call
-			createDirectoryContents(`${templatePath}/${file}`, `${newProjectPath}/${file}`);
+			createTemplate(`${templatePath}/${file}`, `${newProjectPath}/${file}`);
 		}
 	});
 };
 
-export default createDirectoryContents;
+export default createTemplate;
