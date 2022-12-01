@@ -4,9 +4,9 @@ const CURR_DIR = process.cwd();
 const createTemplate = (templatePath, newProjectPath) => {
 	const filesToCreate = fs.readdirSync(templatePath);
 
-	filesToCreate.forEach((file) => {
+	for (let i = 0; i < filesToCreate.length; i++) {
+		const file = filesToCreate[i];
 		const origFilePath = `${templatePath}/${file}`;
-
 		// get stats about the current file
 		const stats = fs.statSync(origFilePath);
 
@@ -24,7 +24,7 @@ const createTemplate = (templatePath, newProjectPath) => {
 			// recursive call
 			createTemplate(`${templatePath}/${file}`, `${newProjectPath}/${file}`);
 		}
-	});
+	}
 };
 
 export default createTemplate;
