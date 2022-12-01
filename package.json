@@ -1,6 +1,6 @@
 {
-  "name": "@joshkaposh/templates",
-  "version": "1.0.0",
+  "name": "joshkaposh-templates",
+  "version": "1.0.5",
   "description": "Template for quickly building websites",
   "main": "index.js",
   "type": "module",
