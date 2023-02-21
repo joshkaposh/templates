@@ -31,12 +31,10 @@ export const QUESTIONS = [
 
 const printProjectCreated = (projectName) => {
 	const createdMsg = `${chalk.green.bold("Project Created!")}`;
-	const startMsg = `${bold("Start by typing")} ${yellow("cd")} ${projectName} && ${yellow(
-		"npm"
-	)} install, then ${yellow("npm")} start`;
 	console.clear();
 	console.log(createdMsg);
-	console.log(startMsg);
+	console.log(`${yellow('cd')} into ${chalk.blue(projectName)} and install dependencies`)
+	console.log(`Take a look at ${yellow('package.json')} for start script`);
 	console.log(`${bold("Happy")} ${yellow.bold("Coding!")}`);
 	console.log(chalk.hidden(""));
 };

@@ -5,7 +5,7 @@ const createTemplate = (templatePath, newProjectPath) => {
 	const filesToCreate = fs.readdirSync(templatePath);
 
 	for (let i = 0; i < filesToCreate.length; i++) {
-		const file = filesToCreate[i];
+		let file = filesToCreate[i];
 		const origFilePath = `${templatePath}/${file}`;
 		// get stats about the current file
 		const stats = fs.statSync(origFilePath);
