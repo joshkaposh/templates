@@ -1,7 +1,14 @@
 import * as fs from "fs";
+
 const CURR_DIR = process.cwd();
 
-const createTemplate = (templatePath, newProjectPath) => {
+function createTemplate(projectName, templatePath,options) {
+    fs.mkdirSync(`${CURR_DIR}/${projectName}`);
+
+    createTemplateRec(projectName,templatePath)
+}
+
+function createTemplateRec (newProjectPath,templatePath) {
 	const filesToCreate = fs.readdirSync(templatePath);
 
 	for (let i = 0; i < filesToCreate.length; i++) {
@@ -22,9 +29,9 @@ const createTemplate = (templatePath, newProjectPath) => {
 			fs.mkdirSync(`${CURR_DIR}/${newProjectPath}/${file}`);
 
 			// recursive call
-			createTemplate(`${templatePath}/${file}`, `${newProjectPath}/${file}`);
+			createTemplateRec(`${newProjectPath}/${file}`,`${templatePath}/${file}`);
 		}
 	}
 };
 
-export default createTemplate;
+export default createTemplate

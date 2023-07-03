@@ -50,7 +50,7 @@ export const collision = {
     }
 }
 
-const operations = {
+export const operations = {
     lerp(x: number, y: number, a: number) {
         return x * (1 - a) + y * a
     },
