@@ -22,11 +22,15 @@ function createTemplateRec (newProjectPath,templatePath) {
 		const stats = fs.statSync(origFilePath);
 
 		if (stats.isFile()) {
-			const contents = fs.readFileSync(origFilePath, "utf8");
+			let contents = fs.readFileSync(origFilePath, "utf8");
 
 			// Rename
 			if (file === ".npmignore") file = ".gitignore";
-
+			if (file === 'package.json') {
+				const json = JSON.parse(contents);
+				json['name'] = newProjectPath;
+				contents = JSON.stringify(json);
+			}
 			const writePath = `${CURR_DIR}/${newProjectPath}/${file}`;
 			fs.writeFileSync(writePath, contents, "utf8");
 		} else if (stats.isDirectory() && file !== "node_modules" && file !== ".git") {
