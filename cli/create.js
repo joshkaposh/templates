@@ -1,14 +1,20 @@
 import * as fs from "fs";
 
 const CURR_DIR = process.cwd();
+function stringify(json) {
+	return JSON.stringify(json,null,2)
+}
+function writeJson(path,json) {
+
+	fs.writeFileSync(path,stringify(json),{encoding:'utf8'})
+}
 
 function createTemplate(projectName, templatePath,options) {
 	fs.mkdirSync(`${CURR_DIR}/${projectName}`);
-	// fs.writeFileSync(`${CURR_DIR}/${projectName}/consts.json`, contents, "utf8");
-	fs.writeFileSync(`${CURR_DIR}/${projectName}/consts.json`, JSON.stringify({
-		root: `${CURR_DIR}/${projectName}`
-	}),'uft8')
 	
+	writeJson(`${CURR_DIR}/${projectName}/consts.json`,{
+		root: `${CURR_DIR}/${projectName}`
+	})
     createTemplateRec(projectName,templatePath)
 }
 
@@ -22,17 +28,17 @@ function createTemplateRec (newProjectPath,templatePath) {
 		const stats = fs.statSync(origFilePath);
 
 		if (stats.isFile()) {
-			let contents = fs.readFileSync(origFilePath, "utf8");
+			let contents = fs.readFileSync(origFilePath, {encoding:"utf8"});
 
 			// Rename
 			if (file === ".npmignore") file = ".gitignore";
 			if (file === 'package.json') {
 				const json = JSON.parse(contents);
-				json['name'] = newProjectPath;
-				contents = JSON.stringify(json);
+				json.name = newProjectPath;
+				contents = stringify(json)
 			}
 			const writePath = `${CURR_DIR}/${newProjectPath}/${file}`;
-			fs.writeFileSync(writePath, contents, "utf8");
+			fs.writeFileSync(writePath, contents, {encoding:"utf8"});
 		} else if (stats.isDirectory() && file !== "node_modules" && file !== ".git") {
 			fs.mkdirSync(`${CURR_DIR}/${newProjectPath}/${file}`);
 

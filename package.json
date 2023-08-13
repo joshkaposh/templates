@@ -1,6 +1,6 @@
 {
   "name": "joshkaposh-templates",
-  "version": "1.2.3",
+  "version": "1.2.7",
   "description": "Template for quickly building websites",
   "main": "index.js",
   "type": "module",
