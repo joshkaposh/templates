@@ -3,8 +3,12 @@ import * as fs from "fs";
 const CURR_DIR = process.cwd();
 
 function createTemplate(projectName, templatePath,options) {
-    fs.mkdirSync(`${CURR_DIR}/${projectName}`);
-
+	fs.mkdirSync(`${CURR_DIR}/${projectName}`);
+	// fs.writeFileSync(`${CURR_DIR}/${projectName}/consts.json`, contents, "utf8");
+	fs.writeFileSync(`${CURR_DIR}/${projectName}/consts.json`, JSON.stringify({
+		root: `${CURR_DIR}/${projectName}`
+	}),'uft8')
+	
     createTemplateRec(projectName,templatePath)
 }
 
