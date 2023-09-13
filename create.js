@@ -4,17 +4,10 @@ const CURR_DIR = process.cwd();
 function stringify(json) {
 	return JSON.stringify(json,null,2)
 }
-function writeJson(path,json) {
 
-	fs.writeFileSync(path,stringify(json),{encoding:'utf8'})
-}
-
-function createTemplate(projectName, templatePath,options) {
+function createTemplate(projectName, templatePath) {
 	fs.mkdirSync(`${CURR_DIR}/${projectName}`);
-	
-	writeJson(`${CURR_DIR}/${projectName}/consts.json`,{
-		root: `${CURR_DIR}/${projectName}`
-	})
+
     createTemplateRec(projectName,templatePath)
 }
 
@@ -23,6 +16,8 @@ function createTemplateRec (newProjectPath,templatePath) {
 
 	for (let i = 0; i < filesToCreate.length; i++) {
 		let file = filesToCreate[i];
+		if (file === ".npmignore") file = ".gitignore";
+
 		const origFilePath = `${templatePath}/${file}`;
 		// get stats about the current file
 		const stats = fs.statSync(origFilePath);
@@ -31,7 +26,6 @@ function createTemplateRec (newProjectPath,templatePath) {
 			let contents = fs.readFileSync(origFilePath, {encoding:"utf8"});
 
 			// Rename
-			if (file === ".npmignore") file = ".gitignore";
 			if (file === 'package.json') {
 				const json = JSON.parse(contents);
 				json.name = newProjectPath;
